@@ -1,7 +1,7 @@
 
 ## Q How can we remove a child from a dependency Hierarchy?
  
-*     using <exclusions> concept.
+* using <exclusions> concept.
 
 ```java
          <dependency>

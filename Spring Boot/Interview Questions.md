@@ -1,7 +1,7 @@
 
 ## Q How can we remove a child from a dependency Hierarchy?
-     using <exclusions> concept.
-
+ 
+*     using <exclusions> concept.
 
 ```java
          <dependency>
@@ -18,7 +18,8 @@
 ```
 
 ## Q) Why exclusions used in Realtime?
-       To avoid legacy APIs and add/migrate to new APIs (new concepts in place of old).
+     
+*   To avoid legacy APIs and add/migrate to new APIs (new concepts in place of old).
 Ex: Remove junit-vintage-engine = JUnit 3/JUnit 4 support from Spring boot and add
     only JUnit5 support
   
@@ -38,11 +39,11 @@ Ex: Remove junit-vintage-engine = JUnit 3/JUnit 4 support from Spring boot and a
 ```
 
 ## Q) What are different Scopes in Maven ? Why they used?
-     Scope - When a Jar is loaded/used.
 
-compile - Jar is used from compile time onwards
-test    - Jar used only for UnitTesting
-runtime - Jar used only at runtime, not a compile time
-provided - Jar is handled by Servers/Container/F/w
-system   - Jar loaded from System Drives (local folders)
-import - Only for <dependencyManagement> 
+* Scope - When a Jar is loaded/used.
+* compile - Jar is used from compile time onwards
+* test    - Jar used only for UnitTesting
+* runtime - Jar used only at runtime, not a compile time
+* provided - Jar is handled by Servers/Container/F/w
+* system   - Jar loaded from System Drives (local folders)
+* import - Only for <dependencyManagement>

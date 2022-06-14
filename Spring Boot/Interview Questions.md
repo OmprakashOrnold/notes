@@ -4,32 +4,34 @@
  @PropertySource("file:./abcd.properties")   [inside project folder]
  @PropertySource("file:d:/data/abcd.properties")  [inside D:/data folder
 ```
-*  By using this annotation YAML files can not be loaded, only properties files  YAML can be read using Snake YAML API only.
+*  By using this annotation YAML files can not be loaded, only properties files  
+*  YAML can be read using Snake YAML API only.
 *  By default application.properties is loaded with priority.
 
 ## Q) How spring container will scan/find classes in project? 
-*  By using: @ComponentScan("")  by default value is starter class package name.
+*  By using: **@ComponentScan("") ** by default value is starter class package name.
 *  We can even modify default value, then starter class package rule never works.
 
 *  Multiple packages can also be provided:
 *  @ComponentScan({"pack1","pack2","pack3","pack4",.....})
 
-## Q)*** For which annotations Spring container creates object?
- a. For StereoType Annotations [ @Component]
- b. Java Config Annotations [ @Bean ]
+## Q)For which annotations Spring container creates object?
 
- Some other types are sub type of @Component only : 
+1. For StereoType Annotations [ @Component]
+2. Java Config Annotations [ @Bean ]
+
+    Some other types are sub type of @Component only : 
     @Repository, @Service, @Controller, @RestController..etc
 
 ## Q What is the difference between @Component and @Configuration?  
-* @Component : Used for creating object to our classes only.[never works for pre-defined]
-* @Configuration: Is used to indicate Input file to Spring container that holds 
+* **@Component** : Used for creating object to our classes only.[never works for pre-defined]
+* **@Configuration ** :Is used to indicate Input file to Spring container that holds 
     object (@Bean) details. It is called as Java based configuration file.
 
      
 ## Q)What is the difference between @Bean and @Component? 
-* @Component : Create object for Programmer defined classes.
-* @Bean      : Create object For both pre and Programmer defined classes.
+* **@Component **: Create object for Programmer defined classes.
+* **@Bean**      : Create object For both pre and Programmer defined classes.
                 But used mostly for pre-defined only.
 
 

@@ -91,10 +91,68 @@
 ```java 
 @Embeddable 
 public class Address{
-@Column(name="hno")
-private int hno;
-@Column(name="loc")
-private String loc;
-}```
+      @Column(name="hno")
+      private int hno;
+      @Column(name="loc")
+      private String loc;
+}
+```
+```java 
+@Entity
+class Employee {
+     @Embedded
+     @AttributeOverrides({
+     @AttributeOverride(name="hno",column=@Column(name="hno")),
+     @AttributeOverride(name="loc",column=@Column(name="location"))
+      })
+      private Address addr=new Address();
+}
+```
 
 
+### Hibernate BootStrap class:-
+```java
+import java.util.Properties;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.cfg.Environment;
+import in.nit.model.Employee;
+public class HibernateUtil {
+    private static SessionFactory sf=null;
+    static {
+        try {
+          //1. Properties object using Environment
+          Properties p=new Properties();
+          p.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
+          p.put(Environment.URL,"jdbc:mysql://localhost:3306/hibernate");
+          p.put(Environment.USER, "root");
+          p.put(Environment.PASS, "root");
+          p.put(Environment.DIALECT, "org.hibernate.dialect.MySQL55Dialect");
+          p.put(Environment.SHOW_SQL, true);
+          p.put(Environment.FORMAT_SQL,true);
+          p.put(Environment.HBM2DDL_AUTO,"update");
+          //2. Convert into Hibernate Object format
+          Configuration cfg=new Configuration();
+          //3. Load Properties into Configuration
+          cfg.setProperties(p);
+          //4. Provide entity details to cfg
+          cfg.addAnnotatedClass(Employee.class);
+          //cfg.addAnnotatedClass(Employee.class);
+          //5. ServiceRegistery
+          StandardServiceRegistry register=new StandardServiceRegistryBuilder()
+                                             .applySettings(cfg.getProperties())
+                                             .build();
+          //6. SessionFactory
+          sf=cfg.buildSessionFactory(register);
+          } catch (Exception e) {
+          e.printStackTrace();
+       }
+}
+public static SessionFactory getSf() {
+         return sf;
+     }
+}
+
+```

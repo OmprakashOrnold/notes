@@ -57,7 +57,44 @@
 
 
 ### LIST, SET AND MAP WITH PRIMITIVES:
-* @ElementCollection @CollectionTable(name="emp_dtls", //table
-joinColumns=@JoinColumn(name="eidFk")) //key col
+* @ElementCollection  
+* @CollectionTable(name="emp_dtls", //table
+
+  joinColumns=@JoinColumn(name="eidFk")) //key col
+
 * @Column(name="lst_data") //element col
-private Set<String> details=new HashSet<String>(0);
+
+ **private Set<String> details=new HashSet<String>(0);**
+
+
+* @ElementCollection 
+* @CollectionTable(name="emp_data", //table
+
+  joinColumns=@JoinColumn(name="eidFk"))        //key col
+* @OrderColumn(name="pos") //index col
+* @Column(name="prjs") //element col
+
+**private List<String> data=new ArrayList<String>(0);**
+
+* @ElementCollection *
+* @CollectionTable(name="emp_models", //table
+
+  joinColumns=@JoinColumn(name="eidFk")) //key col
+
+* @MapKeyColumn(name="pos") //index col
+* @Column(name="model_data") //element col
+
+**private Map<Integer,String> models=new HashMap<Integer, String>();**
+
+
+### COMPONENT MAPPING:
+```java 
+@Embeddable 
+public class Address{
+@Column(name="hno")
+private int hno;
+@Column(name="loc")
+private String loc;
+}```
+
+

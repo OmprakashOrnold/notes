@@ -24,10 +24,10 @@ Incase of tables link using multiplicity, create FK Column(Extra Column)
 *  Check for Collection Type (or not?), 
     if it is Collection then modify HAS-A variable as Collection variable.
 *  Apply multiplicity Annotation at HAS-A Variable
-  1...1     @ManyToOne  (unique condition)
-  *...1     @ManyToOne
-  1...*     @OneToMany
-  *...*     @ManyToMany
+*    1...1     @ManyToOne  (unique condition)
+*    *...1     @ManyToOne
+*    1...*     @OneToMany
+*    * ... *     @ManyToMany
 
 *  Apply JoinColumn (or) JoinTable at HAS-A Variable level
            

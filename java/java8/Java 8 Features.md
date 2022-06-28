@@ -50,3 +50,20 @@ Runnable r = () -> System.out.println("Runnable Implementation Using Lambda Expr
 ```
 
 In this example, target type of lambda expression is Runnable. Compiler uses run() method of Runnable interface to check the return type of lambda expression.
+
+
+
+## What are the functional interfaces? Do they exist before Java 8 or they are the whole new features introduced in Java 8?
+
+Functional interfaces are the interfaces which has exactly one abstract method. Functional interfaces provide only one functionality to implement.
+
+There were functional interfaces exist before Java 8. It is not like that they are the whole new concept introduced only in Java 8. Runnable, ActionListener, Callable and Comaprator are some old functional interfaces which exist even before Java 8.
+
+The new set of functional interfaces are introduced in Java 8 for writing lambda expressions. Lambda expressions must implement any one of these new functional interfaces.
+
+
+## What are the new functional interfaces introduced in Java 8? In which package they have kept in?
+
+Below is the list of new functional interfaces introduced in Java 8. They have kept in java.util.function package.
+
+![https://i0.wp.com/javaconceptoftheday.com/wp-content/uploads/2019/03/Java8FunctionalInterfaces.png?w=665&ssl=1]()

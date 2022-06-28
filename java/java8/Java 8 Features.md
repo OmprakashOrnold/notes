@@ -66,4 +66,35 @@ The new set of functional interfaces are introduced in Java 8 for writing lambda
 
 Below is the list of new functional interfaces introduced in Java 8. They have kept in java.util.function package.
 
-![https://i0.wp.com/javaconceptoftheday.com/wp-content/uploads/2019/03/Java8FunctionalInterfaces.png?w=665&ssl=1]()
+![](https://i0.wp.com/javaconceptoftheday.com/wp-content/uploads/2019/03/Java8FunctionalInterfaces.png?w=665&ssl=1)
+
+
+## What is the difference between Predicate and BiPredicate?
+
+Predicate is a functional interface which represents a boolean operation which takes one argument.
+
+BiPredicate is also functional interface but it represents a boolean operation which takes two arguments
+
+
+## What is the difference between Function and BiFunction?
+
+Function is a functional interface which represents an operation which takes one argument of type T and returns result of type R.
+
+BiFunction is also functional interface which represents an operation which takes two arguments of type T and U and returns a result of type R.
+
+
+## Which functional interface do you use if you want to perform some operations on an object and returns nothing?
+
+Consumer
+
+
+## Which functional interface is the best suitable for an operation which creates new objects?
+
+Supplier
+
+
+## When you use UnaryOperator and BinaryOperator interfaces?
+
+UnaryOperator performs same operation as Function but it is used when type of the argument and result should be of same type.
+
+BinaryOperator performs same operation as BiFunction but it is used when type of the arguments and result should be of same type.

@@ -96,3 +96,128 @@ Delete Mark’s contact : 7080535110
 * Once the bucket is identified by the hash function using hashcode, then hashCode is used to check if there is already a key with the same hashCode or not in the bucket(singly linked list).
 * If there already exists a key with the same hashCode, then the equals() method is used on the keys. If the equals method returns true, that means there is already a node with the same key and hence the value against that key is overwritten in the entry(node), otherwise, a new node is created and added to this Singly Linked List of that bucket.
 * If there is no key with the same hashCode in the bucket found by the hash function then the new Node is added into the bucket found.
+
+# Internal Working of HashMap in Java
+
+### Step 1: Create an empty HashMap
+
+     Map map = new HashMap()
+ 
+The default size of HashMap is taken as 16
+
+### Step 2: Inserting first element Key-Value Pair
+
+    map.put(new Key("Dinesh"), "Dinesh");
+   
+ - First, it will calculate the hash code of Key {“Dinesh”}.    
+ - Hash code will be generated as 4501. 
+ - Calculate index by using a generated hash code, 
+ - According to the index calculation formula, 
+ - It will be 5.
+
+      Now it creates a node object. This node will be placed at index 5.            
+
+
+### Step 3: Adding another element Key-Value Pair
+
+       map.put(new Key("Anamika"), "Anamika);
+       
+ - First, it will calculate the hash code of Key {“Anamika”}.  
+ - Hash code will be generated as 4498.    
+ - Calculate index by using a  generated hash code,  
+ - According to the index calculation formula, 
+ - It will be 2.
+
+      Now it creates a node .This node will be placed at index 2.
+
+### Step 4: (Case of Collision) Adding another element Key-Value Pair
+
+  
+
+    map.put(new Key("Arnav"), "Arnav);
+
+ - First, it will calculate the hash code of Key {“Arnav”}.   
+ - Hash code will be generated as 4498.    
+ - Calculate index by using a generated hash code,  
+ - According to the index calculation formula,  
+ - It will  be 2
+ 
+      Now it creates a node object
+ - This node will be placed at index 2 
+ - if no other  object is  presented there. 
+ - But at this index 2, one node is already presented,
+ -  So this is the case of a collision.
+ -  Now, it will check hashCode() and equals() method
+ -  if both keys are same then it will replace the
+ -   old value with current  value.
+ -   If both keys are not the same then it will connect
+ -   this node to the previous node
+
+ object via the linked list and both are stored at  index 2.
+
+# HashMap’s get() method work internally
+
+   Now we will fetch a value from the HashMap using the get() method.
+   
+             map.get(new Key("Arnav")) 
+
+ - First, it will calculate the hash code of Key {“Arnav”}. 
+ - hash code will be generated as 4498.
+ -    Calculate index by using a generated hash code,
+ -  according to the index calculation formula, it will be 2
+ -  Go to index 2 of an array and compare the firs
+ -   element’s key with given key.
+ - If both are equals then return the value,
+ - otherwise, check for next element if it exists.
+ -   In our case, it is not found as the first element and
+ -  next of node object is not null.
+ -  If next of node is null then return null.
+ - If next of node is not null traverse to the second element and repeat the process 3 until a key is not found or next is not    null.
+
+
+
+
+## Time Complexity:
+
+1. In a fairly distributed hashMap where the entries go to all the buckets in such a scenario, the hashMap has O(1) time for search, insertion, and deletion operations.
+2. In the worst case, where all the entries go to the same bucket and the singly linked list stores these entries, O (n) time is required for operations like search, insert, and delete.
+
+
+### Why Hashmap Should Not Be Used for Multi-threaded Environments?
+
+```java
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
+public class ExceptionExample {
+
+    public static void main(String[] args) {
+        Map<String, Long> phoneBook = new HashMap<String, Long>();
+        phoneBook.put("Vikram",8149101254L);
+        phoneBook.put("Mike",9020341211L);
+        phoneBook.put("Jim",7788111284L);
+
+        Iterator<String> keyIterator = phoneBook.keySet().iterator();
+
+        while (keyIterator.hasNext()){
+            String key = keyIterator.next();
+            if ("Vikram".equals(key)){
+                phoneBook.put("John",9220341211L);
+            }
+        }
+    }
+}
+
+```
+
+**Output**
+
+```
+Exception in thread “main” java.util.ConcurrentModificationException
+ at java.util.HashMap$HashIterator.nextNode(HashMap.java:1445)
+ at java.util.HashMap$KeyIterator.next(HashMap.java:1469)
+ at ExceptionExample.main(ExceptionExample.java:16)
+```
+

@@ -7,7 +7,7 @@ When we create an object of an immutable class, we cannot change its value.
 
 #### we can also create our own custom immutable classes.
 
-* declare the class as **final **so it cannot be extended
+* declare the class as **final** so it cannot be extended
 * all class members should be **private** so they cannot be accessed outside of class
 * shouldn't contain any **setter methods** to change the value of class members
 * the getter method should return the copy of class members

@@ -102,3 +102,67 @@ public class Deserialization {
   }
 } 
 ```
+
+### Java Serialization with the static data member
+
+
+> If our class contains any static data member, it will not be serialized because static is the part of the class not the object.
+
+
+```java
+import java.io.*;
+class Student implements Serializable {
+  int id;
+  String name;
+  static String collegename = "SVV University"; //We can’t serialize the static member
+
+  public Student(int id, String name) {
+    this.id = id;
+    this.name = name;
+  }
+}
+```
+
+### Java Serialization with transient Keyword
+
+
+> There are some cases when you don’t want to serialize any data member of a class but also include it in the code of serialization. In this case, you can mark or declare that member with the transient keyword which will restrict the member from being serialized.
+
+
+```java
+import java.io.*;
+class Student implements Serializable {
+  transient int id; //Making id transient so that it cant be serialized
+  String name;
+
+  public Student(int id, String name) {
+    this.id = id;
+    this.name = name;
+  }
+}
+```
+
+> Now, the transient member id can not be serialized. When we deserialize the object, then you will get the values of only name or other non-transient members. But the value of id as default will be returned. In our case, it will return 0 as default value as id is of int type.
+
+### Java Serialization with SerialVersionUID
+
+* The serialization process at runtime associates an id with each Serializable class which is known as SerialVersionUID. It is used to verify the sender and receiver of the serialized object. The sender and receiver must be the same. To verify it, SerialVersionUID is used.
+
+* The sender and receiver must have the same SerialVersionUID, otherwise, InvalidClassException will be thrown when you deserialize the object. We can also declare our own SerialVersionUID in the Serializable class.
+
+* To do so, you need to create a field SerialVersionUID and assign a value to it. It must be of the long type with static and final. It is suggested to explicitly declare the serialVersionUID field in the class and have it private also.
+
+```java
+
+import java.io.Serializable;
+class Student implements Serializable {
+  private static final long serialVersionUID = 123 L;
+  int id;
+  String name;
+
+  public Student(int id, String name) {
+    this.id = id;
+    this.name = name;
+  }
+}
+```

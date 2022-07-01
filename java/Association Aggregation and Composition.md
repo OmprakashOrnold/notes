@@ -133,3 +133,51 @@ public class AggregationDemo {
 }
 ```
 
+## Composition in Java
+* In this type of association, the entities are completely dependent on each other, unlike the aggregation. Composition allows for one-to-many relationships between objects.
+
+* It represents a part-of relationship between two objects. One entity cannot exist without the other. Composition in Java represents a one-to-many relationship.
+
+* Suppose, there is a House and inside the house, there are many rooms. We consider the relationship between the house and the rooms.
+
+* A single house can have multiple rooms but a single room can not have multiple houses. And, if we delete the house, the rooms will automatically be deleted.
+
+* So the two entities: house and rooms, are dependent on each other. Room is a part of the House and they two hold a relation of composition.
+
+
+```java
+import java.util. * ;
+class Room {
+  public String roomName;
+  public int roomNo;
+  Room(String name, int number) {
+    this.roomName = name;
+    this.roomNo = number;
+  }
+}
+class House {
+  private final List < Room > rooms;
+  House(List < Room > rooms) {
+    this.rooms = rooms;
+  }
+  public List < Room > getTotalRoomsInHouse() {
+    return rooms;
+  }
+}
+public class CompositionDemo {
+  public static void main(String[] args) {
+    Room room1 = new Room("Dining Room", 2);
+    Room room2 = new Room("Bed Room", 5);
+    Room room3 = new Room("Living Room", 3);
+    List < Room > books = new ArrayList < Room > ();
+    books.add(room1);
+    books.add(room2);
+    books.add(room3);
+    House house = new House(books);
+    List < Room > rooms = house.getTotalRoomsInHouse();
+    for (Room room: rooms) {
+      System.out.println("The Room Number of " + room.roomName + " is: " + room.roomNo);
+    }
+  }
+}
+```

@@ -163,3 +163,162 @@ public interface Car {
   Abstract void initSpeed();
 }
 ```
+
+### 2. Encapsulation in Java
+
+>  Encapsulation is a way of combining both data members and functions/methods into a single unit. 
+
+* In Encapsulation, we keep the fields within a class as private, and then we provide access to them using public getter and setter methods.
+* Encapsulation is a kind of protective barrier that keeps the data and methods safe within the class itself.
+* Using Encapsulation, we can reuse the code components or variables without allowing open access to the data.
+
+
+#### We can implement Encapsulation in two ways:
+
+1. Declare the instance variables as private. We make them private, so no one from outside the class can access them directly. We can only set and get the values of these variables using the methods of the class.
+
+2. Provide the getter and setter methods in the class. These methods set and get the values of the instance variables.
+
+
+```java
+class EmployeeCount {
+  private int numOfEmployees = 0;
+  public void setNoOfEmployees(int count) {
+    numOfEmployees = count;
+  }
+  public int getNoOfEmployees() {
+    return numOfEmployees;
+  }
+}
+public class EncapsulationDemo {
+  public static void main(String args[]) {
+    EmployeeCount obj = new EmployeeCount();
+    obj.setNoOfEmployees(3593);
+    System.out.println(" The number of Employees are : “ + obj.getNoOfEmployees());
+      }
+}
+
+```
+
+
+### 3. Inheritance in Java
+
+>   It is an object-oriented process by which one class acquires or inherits the properties and functionalities of another class.
+
+
+* Inheritance provides the reusability of code. Each child class defines only those features that are unique to it, and the child class inherits the rest of the features from the parent class.
+
+To inherit a class we use the ‘extends’ keyword. Here class A is the child class, and class B is the parent class.
+
+
+#### Example of Inheritance
+
+
+```java
+class Teacher {
+  String designation = "Teacher";
+  String school = "Techvidvan";
+  public void teach() {
+    System.out.println("Teaching");
+  }
+}
+public class JavaTeacher extends Teacher {
+  String mainSubject = "Java";
+  public static void main(String args[]) {
+    JavaTeacher obj = new JavaTeacher();
+    System.out.println(obj.school);
+    System.out.println(obj.designation);
+    System.out.println(obj.mainSubject);
+    obj.teach();
+  }
+}
+```
+
+#### Types of Inheritance in Java
+
+**1. Single Inheritance:** Single Inheritance is a child and parent class relationship where one class extends another class.
+
+**2. Multilevel Inheritance:** Multilevel Inheritance is a child-parent relationship when a class extends the child class, and that child class becomes a parent class for another class, and so on. For example, class A extends class B, and class C extends class B.
+
+**3. Hierarchical Inheritance:** Hierarchical Inheritance refers to a child-parent class relationship where more than one class can extend the same parent class. For example, class B extends class A, and class C extends class A.
+
+**4. Multiple Inheritance:** Multiple Inheritance refers to a parent-child class relationship when one child class extends more than one parent class. This means, a child class can have more than one parent class. Java does not support multiple inheritance using classes, but with interfaces.
+
+
+### 4. Polymorphism in Java
+
+
+> Polymorphism is an object-oriented programming feature that allows us to perform a single action in different ways.
+
+
+```java
+//This class has three methods with the same name.
+public class PolymorphismDemo {
+  //Overloaded sum method(). 
+  //This sum takes two int parameters 
+  public int sum(int num1, int num2) {
+    return (num1 + num2);
+  }
+
+  //Overloaded sum() method. 
+  //This sum takes three int parameters 
+  public int sum(int num1, int num2, int num3) {
+    return (num1 + num2 + num3);
+  }
+
+  //Overloaded sum() method.
+  //This sum takes two double parameters 
+  public double sum(double num1, double num2) {
+    return (num1 + num2);
+  }
+
+  public static void main(String args[]) {
+    PolymorphismDemo obj = new PolymorphismDemo();
+    System.out.println(obj.sum(10, 20));
+    System.out.println(obj.sum(10, 20, 30));
+    System.out.println(obj.sum(10.5, 20.5));
+  }
+}
+```
+
+#### Types of Polymorphism
+
+*  Static Polymorphism
+*  Dynamic Polymorphism
+
+
+#### a. Static Polymorphism
+* Polymorphism that the compiler resolves during the compile-time is called the static polymorphism. 
+* We can consider Method overloading as a static polymorphism example in Java.
+
+* Method Overloading allows us to have more than one method with the same name in a class with a different signature. 
+* The above example of polymorphism is the example of method overloading or static polymorphism in Java.
+
+#### b. Dynamic Polymorphism
+
+* The other name for Dynamic Polymorphism is Dynamic Method Dispatch.
+* Dynamic or runtime polymorphism is a technique in which the overridden method is resolved at runtime rather than the compile-time. 
+* That’s why it is called runtime polymorphism
+
+Example of Runtime-polymorphism:
+
+
+```java
+class Animal {
+  public void makeSound() {
+    System.out.println("Default Sound");
+  }
+}
+public class Dog extends Animal {@Override
+  public void makeSound() {
+    System.out.println("Bark");
+  }
+  public static void main(String args[]) {
+    Animal obj = new Dog();
+    obj.makeSound();
+  }
+}
+```
+
+
+

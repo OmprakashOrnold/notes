@@ -33,10 +33,10 @@ public class Teacher implements Serializable
    int id;  
    String name;  
    public Teacher(int id, String name)
-{  
+   {  
       this.id = id;  
       this.name = name;  
-}  
+   }  
 } 
 ```
  
@@ -49,7 +49,7 @@ public class Serialization
    public static void main(String args[])
 {  
      try
-{  
+       {  
         //Creating the object  of Teacher class
         Teacher t1 = new Teacher(101," John");  
 
@@ -60,15 +60,39 @@ public class Serialization
         output.writeObject(t1);  
         output.flush();  
         
-//closing the stream  
+        //closing the stream  
         output.close();  
-System.out.println("Successfully created a byte stream and written it in the specified file");  
-      }
-catch(Exception e)
-{
-System.out.println(e);  
+        System.out.println("Successfully created a byte stream and written it in the specified file");  
+        }catch(Exception e){
+          System.out.println(e);  
      } 
 } 
 }   
 
+```
+
+
+### Example of Deserialization
+
+
+```java
+import java.io.*;
+public class Deserialization {
+  public static void main(String args[]) {
+    try {
+      //Creating stream to read the object  
+      ObjectInputStream input = new ObjectInputStream(new FileInputStream("myFile.txt"));
+      Teacher teacher = (Teacher) input.readObject();
+
+      //printing the data of the serialized object  
+      System.out.println(“The id of the teacher is: ”+teacher.id);
+      System.out.println(“The name of the teacher is: ”+teacher.name);
+
+      //closing the stream  
+      input.close();
+    } catch (Exception e) {
+      System.out.println(e);
+    }
+  }
+} 
 ```

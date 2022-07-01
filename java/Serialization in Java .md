@@ -16,7 +16,13 @@ The basic concept is that we will convert the object into the form of a byte arr
 
 * So we can use this advantage by serializing an object on one platform and using the byte stream on different platforms. In order to serialize an object, we need to implement the **java.io.Serializable interface**.
 
-To serialize an object into a byte stream, we need to call the writeObject() method of the ObjectOutputStream class.
+
+> To serialize an object into a byte stream, we need to call the writeObject() method of the ObjectOutputStream class.
+
+
+
+> To deserialize a byte stream into an object is readObject() method of ObjectInputStream class.
+
 
 
 #### java.io.Serializable Interface

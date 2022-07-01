@@ -113,7 +113,7 @@ public int addNumbers(int num1, int num2)
 After having an overview of Object-Oriented programming, let’s learn the concepts of OOPs.
 
  
-### Abstraction 
+### 1. Abstraction in Java
 
 > Abstraction is a process to represent only “relevant” or essential data and “hide” the unnecessary or background details of an object from the user.
 

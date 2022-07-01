@@ -86,3 +86,50 @@ Divya is a person with a passport number: 99884444
 In the above example, there is a one to one association between two classes: Person and Passport. Both the classes represent two separate entities.
 
 
+## Aggregation in Java
+* Aggregation in Java is a special kind of association. 
+* It represents the Has-A relationship between classes. 
+* Java Aggregation allows only one-to-one relationships.
+* If an object is destroyed, it will not affect the other object, i.e., both objects can work independently.
+
+Let’s take an example. There is an Employee in a company who belongs to a particular Department. If the Employee object gets destroyed still the Department can work independently.
+
+```java
+class Employee {
+  int id;
+  String name;
+  String dept;
+  Employee(int id, String name, String dept) {
+    this.id = id;
+    this.name = name;
+    this.dept = dept;
+    System.out.println("\nEmployee name is " + name);
+    System.out.println("Employee Id is " + id);
+    System.out.println("Employee belongs to the " + dept + " Department");
+  }
+}
+class Department {
+  String deptName;
+  int noOfemployees;
+  Department(String name, int numberOfemployees) {
+    this.deptName = name;
+    this.noOfemployees = numberOfemployees;
+  }
+}
+class University {
+  String universityName;
+  int noOfdepartments;
+  University(String name, int departments) {
+    this.universityName = name;
+    this.noOfdepartments = departments;
+  }
+}
+public class AggregationDemo {
+  public static void main(String[] args) {
+    Employee e1 = new Employee(101, "Rishi", "Engineering");
+    Employee e2 = new Employee(167, "Rohan", "Management");
+    Employee e3 = new Employee(125, "Sneha", "Accounts");
+  }
+}
+```
+

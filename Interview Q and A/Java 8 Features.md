@@ -278,3 +278,84 @@ private static void filter(List<Student> students) {
    System.out.println("Ending the execution of filter()");
 }
 ```
+output
+
+
+```
+Executing filter()
+*** Students who lives in Pune ***
+Student [name=Saurabh, city=Pune, age=26]
+Student [name=Robert, city=Pune, age=25]
+Student [name=Roman, city=Pune, age=18]
+```
+
+## 10.How to find the object meeting certain criteria?
+
+* we can use findAny() / findFirst() on stream to find the object based on the criteria passed an an input.
+* Here we are finding the Student whose name is Saurabh.
+
+
+```java
+private static List<Student> createList() {
+
+   Student student1 = new Student("Saurabh", "Pune", 26);
+   Student student2 = new Student("Robert", "Pune", 25);
+   Student student3 = new Student("John", "Mumbai", 21);
+   Student student4 = new Student("Roman", "Pune", 18);
+   Student student5 = new Student("Randy", "Mumbai", 17);
+   
+   return Arrays.asList(new Student[] {student1, student2, student3, student4, student5});
+}
+
+private static void filter(List<Student> students) {
+   System.out.println("Executing filter() :");
+   // Find the student whose name is Saurabh and return null if not found
+   System.out.println("*** Students whos name is Saurabh *** ");
+   Student stud = students.stream()
+         .filter(student -> SAURABH.equals(student.getName()))
+         .findAny()
+         .orElse(null); // it will return null if filter does find any object matching the criteria 
+   
+   System.out.println(stud);
+   System.out.println("Ending the execution of filter()");
+}
+
+```
+
+
+```
+*** Students whos name is Saurabh ***
+Student [name=Saurabh, city=Pune, age=26]
+Ending the execution of filter()
+```
+
+## 11. How to use map method? What is the use of map method? Write a program to get the age of Student whose name is Saurabh
+
+```
+<R> Stream<R> map(Function<? super T, ? extends R> mapper);
+```
+* A stream consisting of the results of applying the given function to the elements of this stream. Map takes an input which describes how the value needs to be transformed into.
+* Suppose we want to get the age of the Student whose name is Saurabh, till now we have only retrieved the complete object from the stream but how do we do this ?
+We can use map() to transform the Student Stream into the age stream as below. 
+```java
+int age = students.stream()
+    .filter(student -> SAURABH.equals(student.getName()))
+    .map(Student::getAge)
+    .findAny()
+    .orElse(0);
+System.out.printf("*** Age of %s is %dn",SAURABH, age)
+```
+
+
+## 12.What is the use of flatMap() in Java 8? What is the difference between map() and flatMap()?
+
+Suppose we want to get all the courses available in students list then we can write the code as below:
+
+```java
+Set<String> courses = students.stream()
+         .map(Student::getCourses)
+         .collect(Collectors.toSet());
+```
+* Here we will get a compilation error as below
+* Type mismatch: cannot convert from Set<String[]> to Set<String>
+* To resolve this issue we use flatMap()

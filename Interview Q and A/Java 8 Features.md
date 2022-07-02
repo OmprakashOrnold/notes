@@ -532,3 +532,147 @@ Last 5 are short-circuiting terminal operations.
 ## 16.Difference between Intermediate and Terminal Operations in Java 8Intermediate vs Terminal Operations in Java 8
 ![](https://i.ibb.co/KDh4k2z/diff.png)
 
+## 18.Advance collectors in Java 8
+
+### 1. joining() in Java 8
+
+Collectors.joining will join all the results with delimiter specified in the parameter.
+
+
+```java
+private static void joiningCollector(List<Student> students) {
+ System.out.println("######## Executing joiningCollector() : ######## ");
+ String allStudents = students.stream()
+   .map(Student::getName)
+   .collect(Collectors.joining(" | "));
+ System.out.println("Collectors.joining() : "+allStudents);
+ System.out.println("######## Ending the execution of joiningCollector() ######## "); 
+}
+
+```
+Output
+
+```
+######## Executing joiningCollector() : ########
+Collectors.joining() : Saurabh | Robert | John | Roman | Randy
+######## Ending the execution of joiningCollector() ########
+```
+
+
+### 2. summaryStatistics() in Java 8
+It is used to calculate the sum, min, max, avg and total count of the elements passed to this method. In below example we are finding the sum, min, max of the Students age.
+
+
+```java
+private static void summaryStatisticsCollector(List<Student> students) {
+ System.out.println("######## Executing summaryStatisticsCollector() : ######## ");
+ DoubleSummaryStatistics statistics = students.stream()
+   .mapToDouble(Student::getAge)
+   .summaryStatistics();
+ 
+ System.out.println("summaryStatistics() : "+statistics);
+ System.out.println("Total Count : "+statistics.getCount());
+ System.out.println("Total Sum : " + statistics.getSum());
+ System.out.println("Minimum Age : " + statistics.getMin());
+ System.out.println("Maximum Age : " + statistics.getMax());
+ System.out.println("Average Age : " + statistics.getAverage());
+ System.out.println("######## Ending the execution of summaryStatisticsCollector() ######## ");
+}
+```
+
+Output
+
+```
+######## Executing summaryStatisticsCollector() : ########
+summaryStatistics() : DoubleSummaryStatistics{count=5, sum=107.000000, min=17.000000, average=21.400000, max=26.000000}
+Total Count : 5
+Total Sum : 107.0
+Minimum Age : 17.0
+Maximum Age : 26.0
+Average Age : 21.4
+######## Ending the execution of summaryStatisticsCollector() ########
+
+```
+
+
+### 3. partitioningBy() in Java 8
+
+* We can partition a set of stream in two based on certain condition. 
+* So it will create two streams – one which satisfies the condition and another which does not satisfies the conditions.
+* Lets see below, suppose we want to divide the students who lives in Pune and who does not live in Pune.
+* partitioningBy will return a map containing two keys
+* true – which holds the stream which satisfy the condition.
+* false – which holds the stream which does not satisfy the condition
+
+
+```java
+private static void partitioningByCollector(List<Student> students) {
+ System.out.println("######## Executing partitioningByCollector() : ######## ");
+ Map<Boolean,List<Student>> partition = students.stream()
+   .collect(Collectors.partitioningBy(stud -> stud.getCity().equals("Pune")));
+ 
+ System.out.println("Students living in Pune : "+partition.get(true));
+ System.out.println("Students not living in Pune : "+partition.get(false));
+ System.out.println("######## Ending the execution of partitioningByCollector() ######## ");
+}
+```
+Output
+
+```
+######## Executing summaryStatisticsCollector() : ########
+Students living in Pune : [Student [name=Saurabh, city=Pune, age=26], Student [name=Robert, city=Pune, age=25], Student [name=Roman, city=Pune, age=18]]
+Students not living in Pune : [Student [name=John, city=Mumbai, age=21], Student [name=Randy, city=Mumbai, age=17]]
+######## Ending the execution of summaryStatisticsCollector() ########
+```
+
+### 4.groupingBy() in Java 8
+
+* partitioningBy() is very simple form of grouping the stream into two, but in real life we might need more than that. groupingBy() is used to group the stream based on the condition passed to the groupingBy().
+* In below example we are passing the city as an input to the groupingBy() which will split the stream into total number of cities available in the stream and will return a map as `Map<String,List<Student>>`
+
+```java
+
+private static void groupingByCollector(List<Student> students) {
+ System.out.println("######## Executing groupingByCollector() : ######## ");
+ Map<String,List<Student>> groupBy = students.stream()
+   .collect(Collectors.groupingBy(Student::getCity));
+ 
+ System.out.println("groupingByCollector : "+groupBy);
+ System.out.println("######## Ending the execution of groupingByCollector() ######## ");
+}
+```
+
+Output
+
+```
+######## Executing groupingByCollector() : ########
+groupingByCollector : {Pune=[Student [name=Saurabh, city=Pune, age=26], Student [name=Robert, city=Pune, age=25], Student [name=Roman, city=Pune, age=18]], Mumbai=[Student [name=John, city=Mumbai, age=21], Student [name=Randy, city=Mumbai, age=17]]}
+######## Ending the execution of groupingByCollector() ########
+```
+
+### 5. mappingBy() in Java 8
+
+* `groupingBy()` splits the stream into set of groups but it collects the complete object on which groupingBy is done
+* Like in above example of `groupingBy()`, we got the `Map<String,List<Student>>` where we gets the key as grouping factor and value as List<Student> objects, but what if we want to collect the names of Students or age of Students ? In this case` mappingBy()` comes into picture, `mappingBy()` allows us to pick the particular property of the Object to store into map rather than storing the complete Object.
+
+
+```java
+private static void mappingByCollector(List<Student> students) {
+ System.out.println("######## Executing mappingByCollector() : ######## ");
+ Map<String,Set<String>> mappingBy = students.stream()
+   .collect(Collectors.groupingBy(Student::getCity, 
+      Collectors.mapping(Student::getName, Collectors.toSet())));
+ 
+ System.out.println("mappingByCollector : "+mappingBy);
+ System.out.println("######## Ending the execution of mappingByCollector() ######## ");
+}
+```
+
+Output
+
+```
+######## Executing mappingByCollector() : ########
+mappingByCollector : {Pune=[Robert, Roman, Saurabh], Mumbai=[Randy, John]}
+######## Ending the execution of mappingByCollector() ########
+
+```

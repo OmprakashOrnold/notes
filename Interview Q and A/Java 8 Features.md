@@ -359,3 +359,42 @@ Set<String> courses = students.stream()
 * Here we will get a compilation error as below
 * Type mismatch: cannot convert from Set<String[]> to Set<String>
 * To resolve this issue we use flatMap()
+
+```java
+Set<String> courses = students.stream()
+         .map(Student::getCourses)
+         .flatMap(Arrays::stream)
+         .collect(Collectors.toSet());
+```
+## 13. What are short circuiting operations in Java 8?
+ * Short-circuit operations are same as Boolean short circuiting in java,
+ * where the second condition is executed or evaluated only if the first argument does not suffice to determine the value of the expression. For example:
+
+```java
+If(str != null && str.length>10)
+```
+In this condition, if we pass str as null then it will only execute the first condition and evaluate the result. The same concept of short circuiting java 8 uses in Stream.
+
+## 14. What are different short circuiting operations in Java 8?
+
+
+### 1. limit() in Java 8
+
+it limits the stream elements to process, In below example we are printing only first 5 elements from the stream
+
+
+```java
+int [] arr = {1,2,3,4,5,6,7,8,9,11};
+  
+System.out.println("*** Printing the first 5 elements of stream :");
+Arrays.stream(arr)
+      .limit(5)
+      .forEach(System.out::println);
+```
+Output :
+`*** Printing the first 5 elements of stream :
+1
+2
+3
+4
+5`

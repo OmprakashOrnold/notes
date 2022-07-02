@@ -530,4 +530,4 @@ Terminal operations produces a non-stream (cannot be chained) result such as pri
 Last 5 are short-circuiting terminal operations.
 
 ## 16.Difference between Intermediate and Terminal Operations in Java 8Intermediate vs Terminal Operations in Java 8
-![](https://freeimage.host/i/jT0M5x)
+![](https://ibb.co/kJBbf46)

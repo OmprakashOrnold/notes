@@ -392,9 +392,142 @@ Arrays.stream(arr)
       .forEach(System.out::println);
 ```
 Output :
-`*** Printing the first 5 elements of stream :
+```
+*** Printing the first 5 elements of stream :
 1
 2
 3
 4
-5`
+5
+```
+
+### 2. findFirst(), findAny() in Java 8
+
+firstFist() will return the first element from the Stream where as findAny returns any element from the Stream. findAny may give different result everytime.
+
+
+```java
+int [] arr = {1,2,3,4,5,6,7,8,9};
+  
+Integer findFirst = Arrays.stream(arr).filter(i -> (i%2) == 0)
+  .findFirst()
+  .orElse(-1);
+
+System.out.println("findFirst : " + findFirst);
+
+Integer findAny = Arrays.stream(arr).filter(i -> (i%2) == 0)
+  .findAny()
+  .orElse(-1);
+
+System.out.println("findAny : " + findAny);
+```
+Output :
+
+```
+findFirst : 2
+findAny : 6
+```
+
+
+### 3. allMatch() anyMatch() noneMatch() in Java 8
+
+* These short circuit operators returns true or false value depending on the condition being evaluated
+* allMatch() – this will evaluate the condition for all the steams and will return a boolean value.
+* anyMatch() – this will evaluate the condition in the stream until it finds its match and once it finds the match, It will exit the processing and retruns the rboolean value.
+* noneMatch() – This is exact opposite of allMatch()
+* Lets see their behavior through some practical example.
+
+```java
+int [] arr = {1,2,3,4,5,6,7,8,9,11};
+    
+System.out.println("All numbers are less than 12 : " + Arrays.stream(arr).allMatch(i-> i < 12));
+System.out.println("Contains any numbers greater than 10 : " + Arrays.stream(arr).anyMatch(i-> i == 8));
+System.out.println("All numbers are less than 10 : " + Arrays.stream(arr).noneMatch(i-> i > 10));
+```
+Output :
+
+```
+All numbers are less than 12 : true
+Contains any numbers greater than 10 : true
+All numbers are less than 10 : false
+```
+## 15.What is Intermediate and Terminal Operations of Stream in Java 8?
+![](https://i1.wp.com/onlyfullstack.com/wp-content/uploads/2020/11/img_5fbbc595ddb92.png?resize=678%2C135&ssl=1)
+
+
+### Stream
+We can create stream from object with the help of Stream.of() method.
+
+### Intermediate Operations in Java 8
+* Intermediate operation will transform a stream into another stream, they are composed forming a Pipeline of Stream execution and will not be able to execute until some terminal operation is invoked
+* Intermediate Operations are lazy, so they don’t get executed until  the actual processing is required.
+* Every Intermediate Operation will return the new Stream and traversal of each Stream does not begin until the terminal operation of the pipeline is executed.
+
+Lets see how intermediate operations are lazy ?
+
+* We have a map() function in which we are printing the current student name. These names will only be printed if we apply a terminal operator to it. In below example we have applied the collect(terminal operator) and the map() prints the student names after the thread comes into running state. This is how intermediate operations works.
+
+
+```java
+private static void lazyIntermediateOperations(List<Student> students) throws InterruptedException {
+ System.out.println("######## Executing lazyIntermediateOperations() : ######## ");
+ Stream<String> studentStream = students.stream()
+            .map(student -> {
+           System.out.printf("In Map : %sn", student.getName());
+           return student.getName().toUpperCase();
+      });
+ 
+ System.out.println("After map statement");
+ Thread.sleep(5000);
+ System.out.println("Thread is in Running state now");
+ studentStream.collect(Collectors.toList());
+ System.out.println("######## Ending the execution of lazyIntermediateOperations() ######## ");
+}
+```
+
+Output
+
+```
+######## Executing lazyIntermediateOperations() : ########
+After map statement
+Thread is in Running state now
+In Map : Saurabh
+In Map : Robert
+In Map : John
+In Map : Roman
+In Map : Randy
+######## Ending the execution of lazyIntermediateOperations() ########
+```
+
+### Intermediate Operations available in Java 8 :
+
+•    filter(Predicate<T>)
+•    map(Function<T>)
+•    flatmap(Function<T>)
+•    sorted(Comparator<T>)
+•    peek(Consumer<T>)
+•    distinct()
+•    limit(long n)
+•    skip(long n)
+
+### Terminal Operations in Java 8
+Terminal operations produces a non-stream (cannot be chained) result such as primitive value, a collection or no value at all.
+* forEach
+* toArray
+* reduce
+* collect
+* min
+* max
+* count
+
+### Short Circuiting Terminal Operations available in Java 8 :
+* anyMatch
+* allMatch
+* noneMatch
+* findFirst
+* findAny
+
+Last 5 are short-circuiting terminal operations.
+
+## 16.Difference between Intermediate and Terminal Operations in Java 8Intermediate vs Terminal Operations in Java 8
+![](https://freeimage.host/i/jT0M5x)

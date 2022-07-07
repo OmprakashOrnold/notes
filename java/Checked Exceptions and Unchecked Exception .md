@@ -15,3 +15,6 @@
 |IO Exception |  IllegalStateException|
 | No Such Method Exception |  Arithmetic Exception|
 | Class Not Found Exception |  Null Pointer Exception|
+
+
+![](https://techvidvan.com/tutorials/wp-content/uploads/sites/2/2020/04/exception-hierarchy-in-java.jpg)

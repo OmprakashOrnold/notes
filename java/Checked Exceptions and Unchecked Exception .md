@@ -10,32 +10,8 @@
 | JVM needs to catch and handle the checked exception.| JVM needs not catch and handle the unchecked exception.|
 | We can create user-defined checked exceptions by extending java.Lang.Exception class| We can create user-defined Unchecked exceptions by extending RuntimeException clas|
 | Examples of Checked exceptions:| Examples of Unchecked Exceptions:|
-| File Not Found Exception
-
-No Such Field Exception
-
-SQL Exception
-
-IO Exception
-
-Interrupted Exception
-
-No Such Method Exception
-
-Class Not Found Exception| Examples of Unchecked Exceptions:
-
-Array Index Out of Bounds Exception
-
-NumberFormatException
-
-InputMismatchException 
-
-IllegalStateException
-
-Arithmetic Exception
-
-Null Pointer Exception
-
-Security Exception|
-| --- | --- |
-| --- | --- |
+| File Not Found Exception |  NumberFormatException|
+| SQL Exception |  InputMismatchException|
+|IO Exception |  IllegalStateException|
+| No Such Method Exception |  Arithmetic Exception|
+| Class Not Found Exception |  Null Pointer Exception|

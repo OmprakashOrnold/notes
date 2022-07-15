@@ -153,12 +153,37 @@ Naming rule is: `hibernate.cfg.xml`
 *  Create object to configuration (c)
 *  Load .cfg.xml file into configuration using configure () method.
 *  Build SessionFactory using cfg, which handles
-1.   Loading driver class
-2.   Creating connection
-3.   Prepare statements
-
+      1. Loading driver class
+      2. Creating connection
+      3. Prepare statements
 *  Open Session to perform on operation (either select or non-select)
 * Begin Transaction(Tx) if non-select operation is to be performed.
 * Now perform operation using session.
 * Commit or rollback transaction if tx started.
 * Close session at last.
+
+
+## Coding Steps with Concept:-
+
+1. Create empty configuration object using class “configuration” given by hibernate.
+`Configuration cfg=new Configuration();`
+2. Load hibernate.`cfg.xml` file into above object using method `configure()`
+`cfg.configure();`
+* if XML file name or location is different then code will be:
+`cfg.configure(“abcd.cfg.xml”);`
+`cfg.configure(“com/app/one.cfg.xml”);`
+3. Create object to `SessionFactory `using `cfg`, which load driver class and creates connection and
+statement type.
+`SessionFactory sf=cfg.buildSessionFactory();`
+4. To perform operations (Task) create one Session object using SF.
+`Session ses=sf.openSession();`
+5. Start one Transaction if operation type is non-select (insert, update and delete). If select
+operation then Tx not required.
+`Transaction tx=ses.beginTransaction();`
+6. Perform operation using session
+`................................
+................................`
+7. Either `commit `or `rollback `if Tx is started.
+`tx.commit ()/tx.rollback()`;
+8. Finally close Session
+`ses.close()`;

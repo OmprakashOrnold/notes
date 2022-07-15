@@ -115,9 +115,7 @@ Value must be set to ‘true’
 ## hbm2ddl.auto:-
 here **hbm**= hiberante mapping
 * ddl=Data definition language(create /alter/drop in SQL) it has four possible value. Those are:-
-* **Validate**:- in this case hibernate creates no tables programmer has to create or modify tables
-* manually. It is only default value.
+* **Validate**:- in this case hibernate creates no tables programmer has to create or modify tables manually. It is only default value.
 * **Create**:- hibernate creates always new tables, if table exist then it will be drop.
 * **Update**:- it creates new table if table not exits else uses same tables.
-***Create-drop**:- this option is used for testing process not in development, it’s new table and
-* performs operation at last table will be drop.
+* **Create-drop**:- this option is used for testing process not in development, it’s new table and performs operation at last table will be drop.

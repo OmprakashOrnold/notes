@@ -22,7 +22,7 @@ time, and memory of on application.
 2. JTA
 3. JNDI And one Non-Java Technology “XML”.
 
-####  **JDBC =Java Database Connectivity :-**
+####  **JDBC =Java Database Connectivity**
 * It is used to perform database operations. Like insert, update, delete and select.
 
 ####  **JTA = Java Transaction API**
@@ -43,7 +43,82 @@ SQL Query return manually by programmer.
 1. Configuration file
 2. Model/Entity/POJO Class
 3. Mapping code(XML/Annotation)
-4. Test Class [POJI-POJO]
+
+####  1. Configuration file
+It is used to provide all details related to DB and Hibernate.
+* a). it will store data in key = value format.
+* b). file name should have extension ___.cfg.xml
+* c). recommended name is:-`hibernate.cfg.xml`
+* d). Few keys are:- driver_Class, url, dialect , show_sql
 
 
+####  2. Model/Entity/POJO Class
+Model Class + Rules given by hibernate:-
 
+
+####  3. Mapping code(XML/Annotation)
+####  4. Test Class [POJI-POJO]
+1. class must have package statement
+2. Class must have public (no. of table =no. of classes)
+3. variables must be private // (no. of column =no .of variables)
+4. Default constructor with setters and getters (mutators).
+5. Can override methods from Object , those are(3)
+toString(), equals(), hashCode()non-final ,non-static,non-private.
+6. Annotations:-JPA Annotations(Java Persistency API=JPA)
+
+
+# Hibernate Application Files:-
+To write one application we should write 4 files, given as below:
+1. Model class (Class)
+2. Mapping Code (XML/ANNOTATION)
+3. Configuration file (XML)
+4. Test Class (class)
+
+
+### Keys are given below (8 keys)
+
+1) hibernate.connection.driver_class=oracle.jdbc.driver.OracleDriver
+2) hibernate.connection.url=jdbc:oracle:thin@localhost:1521:xe
+3) hibernate.connection.username=system
+4) hibernate.connection.password=system
+5) hibernate.dialect=org.hibernate.dialect.OracleDialect
+6) hibernate.show_sql=true
+7) hibernate.format_sql=true
+8) hibernate.hbm2ddl.auto=update
+
+ 
+## dialect
+ Dialect is class it will be generate the SQL Query when programmer performsoperation, for every database dialect is different
+##### EX:- 
+* Oracle DB= OracleDialect
+* MySQL DB= MySQLDialect
+* Sybase DB= SybaseDialect
+* H2 DB = H2Dialect
+All dialect are defined in package org.hibernate.dialect
+
+## show_sql:-
+* show_sql:- it is a Boolean property default value is false. To see generated SQL on Console make value as true.
+## format_sql:-
+* format_sql:- it is a Boolean property default value is false. It will display sql clause by
+clause (part by part)
+
+```sql
+Select
+Eid ,nam
+From
+Emptab
+Where
+Eid=10
+Value must be set to ‘true’
+```
+
+
+## hbm2ddl.auto:-
+here hbm= hiberante mapping
+* ddl=Data definition language(create /alter/drop in SQL) it has four possible value. Those are:-
+* A. Validate:- in this case hibernate creates no tables programmer has to create or modify tables
+* manually. It is only default value.
+* B. Create:- hibernate creates always new tables, if table exist then it will be drop.
+* C. Update:- it creates new table if table not exits else uses same tables.
+* D. Create-drop:- this option is used for testing process not in development, it’s new table and
+* performs operation at last table will be drop.

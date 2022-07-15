@@ -33,6 +33,8 @@ database.
 3. **JNDI= Java Naming Directory Interface**
 * It is used to create connection-pool and execute SQL Statement faster.
 
+## Hibernate Programming design:-
+
 * JDBC works on primitive data even object is given, it converts Object Data to Primitive Data then
 SQL Query return manually by programmer.
 
@@ -43,4 +45,6 @@ SQL Query return manually by programmer.
 2. Model/Entity/POJO Class
 3. Mapping code(XML/Annotation)
 4. Test Class [POJI-POJO]
+
+
 

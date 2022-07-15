@@ -150,14 +150,15 @@ Naming rule is: `hibernate.cfg.xml`
 
 ```
 ## Execution flow
-* 1. Create object to configuration (c)
-* 2. Load .cfg.xml file into configuration using configure () method.
-* 3. Build SessionFactory using cfg, which handles
-* a. Loading driver class
-* b. Creating connection
-* c. Prepare statements
-* 4. Open Session to perform on operation (either select or non-select)
-* 5. Begin Transaction(Tx) if non-select operation is to be performed.
-* 6. Now perform operation using session.
-* 7. Commit or rollback transaction if tx started.
-* 8. Close session at last.
+*  Create object to configuration (c)
+*  Load .cfg.xml file into configuration using configure () method.
+*  Build SessionFactory using cfg, which handles
+1.   Loading driver class
+2.   Creating connection
+3.   Prepare statements
+
+*  Open Session to perform on operation (either select or non-select)
+* Begin Transaction(Tx) if non-select operation is to be performed.
+* Now perform operation using session.
+* Commit or rollback transaction if tx started.
+* Close session at last.

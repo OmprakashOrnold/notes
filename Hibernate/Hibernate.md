@@ -165,11 +165,13 @@ Naming rule is: `hibernate.cfg.xml`
 
 ## Coding Steps with Concept:-
 
-1. Create empty configuration object using class “configuration” given by hibernate.
+1. Create empty configuration object using class “`configuration`” given by hibernate.
 `Configuration cfg=new Configuration();`
 2. Load hibernate.`cfg.xml` file into above object using method `configure()`
 `cfg.configure();`
-* if XML file name or location is different then code will be:
+
+###### Note 
+if XML file name or location is different then code will be:
 `cfg.configure(“abcd.cfg.xml”);`
 `cfg.configure(“com/app/one.cfg.xml”);`
 3. Create object to `SessionFactory `using `cfg`, which load driver class and creates connection and

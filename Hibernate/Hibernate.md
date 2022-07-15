@@ -20,17 +20,16 @@ time, and memory of on application.
 ### Hibernate has 3 Java Technologies
 1. JDBC
 2. JTA
-3. JNDI
-* And one Non-Java Technology “XML”.
+3. JNDI And one Non-Java Technology “XML”.
 
-1. **JDBC =Java Database Connectivity :-**
+####  **JDBC =Java Database Connectivity :-**
 * It is used to perform database operations. Like insert, update, delete and select.
 
-2. **JTA = Java Transaction API**
+####  **JTA = Java Transaction API**
 * It is used to either confirm (commit) changes or cancel (rollback) changes done at
 database.
 
-3. **JNDI= Java Naming Directory Interface**
+####  **JNDI= Java Naming Directory Interface**
 * It is used to create connection-pool and execute SQL Statement faster.
 
 ## Hibernate Programming design:-

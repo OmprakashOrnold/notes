@@ -9,8 +9,6 @@
 * should be done by programmer using XML/Annotatios concept.
 * Then ORM convert  Object-->ROW
 * Here , ORM only generates SQL Query.
- 
-![](https://i.ibb.co/zPdtFHX/mapping-1.png)
 
 
 ## Design Pattern:-
@@ -23,7 +21,8 @@ time, and memory of on application.
 1. JDBC
 2. JTA
 3. JNDI
-And one Non-Java Technology “XML”.
+* And one Non-Java Technology “XML”.
+
 1. **JDBC =Java Database Connectivity :-**
 * It is used to perform database operations. Like insert, update, delete and select.
 

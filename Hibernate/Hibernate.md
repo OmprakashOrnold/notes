@@ -51,13 +51,8 @@ It is used to provide all details related to DB and Hibernate.
 * c). recommended name is:-`hibernate.cfg.xml`
 * d). Few keys are:- driver_Class, url, dialect , show_sql
 
-
 ####  2. Model/Entity/POJO Class
 Model Class + Rules given by hibernate:-
-
-
-####  3. Mapping code(XML/Annotation)
-####  4. Test Class [POJI-POJO]
 1. class must have package statement
 2. Class must have public (no. of table =no. of classes)
 3. variables must be private // (no. of column =no .of variables)
@@ -65,6 +60,10 @@ Model Class + Rules given by hibernate:-
 5. Can override methods from Object , those are(3)
 toString(), equals(), hashCode()non-final ,non-static,non-private.
 6. Annotations:-JPA Annotations(Java Persistency API=JPA)
+
+####  3. Mapping code(XML/Annotation)
+####  4. Test Class [POJI-POJO]
+
 
 
 # Hibernate Application Files:-
@@ -114,11 +113,11 @@ Value must be set to ‘true’
 
 
 ## hbm2ddl.auto:-
-here hbm= hiberante mapping
+here **hbm**= hiberante mapping
 * ddl=Data definition language(create /alter/drop in SQL) it has four possible value. Those are:-
-* A. Validate:- in this case hibernate creates no tables programmer has to create or modify tables
+* **Validate**:- in this case hibernate creates no tables programmer has to create or modify tables
 * manually. It is only default value.
-* B. Create:- hibernate creates always new tables, if table exist then it will be drop.
-* C. Update:- it creates new table if table not exits else uses same tables.
-* D. Create-drop:- this option is used for testing process not in development, it’s new table and
+* **Create**:- hibernate creates always new tables, if table exist then it will be drop.
+* **Update**:- it creates new table if table not exits else uses same tables.
+***Create-drop**:- this option is used for testing process not in development, it’s new table and
 * performs operation at last table will be drop.

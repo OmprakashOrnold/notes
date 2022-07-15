@@ -114,8 +114,38 @@ Value must be set to ‘true’
 
 ## hbm2ddl.auto:-
 here **hbm**= hiberante mapping
-* ddl=Data definition language(create /alter/drop in SQL) it has four possible value. Those are:-
+ ddl=Data definition language(create /alter/drop in SQL) it has four possible value. Those are:-
 * **Validate**:- in this case hibernate creates no tables programmer has to create or modify tables manually. It is only default value.
 * **Create**:- hibernate creates always new tables, if table exist then it will be drop.
 * **Update**:- it creates new table if table not exits else uses same tables.
 * **Create-drop**:- this option is used for testing process not in development, it’s new table and performs operation at last table will be drop.
+
+
+>  configuration file must follow naming rule given by hibernate for auto-detection.
+
+Naming rule is: `hibernate.cfg.xml`
+
+
+##  `hibernate.cfg.xml`
+
+
+```xml
+<?xmlversion="1.0"encoding="UTF-8"?>
+<!DOCTYPEhibernate-configurationPUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<propertyname="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+		<propertyname="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:xe	</property>
+		<propertyname="hibernate.connection.username">system</property>
+		<propertyname="hibernate.connection.password">system</property>
+		<propertyname="hiberante.dialect"> org.hibernate.dialect.OracleDialect</property>
+		<propertyname="hibernate.show_sql">true	</property>
+		<propertyname="hibernate.format_sql">true</property>
+		<propertyname="hibernate.hbm2ddl.auto">update</property>
+		<mappingclass="com.app.model.Product"/>
+	</session-factory>
+</hibernate-configuration>
+
+```

@@ -189,3 +189,91 @@ operation then Tx not required.
 `tx.commit ()/tx.rollback()`;
 8. Finally close Session
 `ses.close()`;
+
+## Session(I) in hibernate:-
+* Session is an interface defined in Hibernate Framework.
+* It is used to perform any operation in Hibernate.
+
+
+```java
+      Session ses= sf.openSession())
+      try{
+    
+      }catch(Exception e) {
+       e.prrintStackTrace();
+      } finally{
+      ses.close();
+      }
+``
+
+### Given few examples as:
+#### Non-select: 
+* Save(obj):Serializable
+* Update(obj):void
+* Delete(obj):void
+* saveOrUpdate(obj):void
+#### Select:
+* get(T.class,Id):T obj
+* load(T.class,Id):T obj
+
+Here T=Model class Name=type
+> Above operations are one row --> one object (Single row) operations, it means at a time delete
+one row , select one row, update one row ......etc.
+
+## To perform multi-row operations Session(I) has provided
+* Query
+* Criteria APIs
+
+
+> Transaction (tx) must be created using Session(I) in hibernate for non-select operations. It
+is not applicable for select operations.
+
+
+## Cache :- 
+* It is a Temporary memory implemented by Hibernate framework(not in JDBC) 
+* whichreduces network calls between Application and Database , that improves performance.
+
+
+### Hibernate supports 2 type of Cache Management.
+
+* Session Cache (First Level)
+* Session Factory Cache(Second level)
+
+(disabled by default),Which is handled by programmer.
+
+
+# Session Operations:-
+
+## Save(obj):- 
+* this method is given from Session (I). 
+* It is used to convert model class object to DB Table Row.
+• Model class must have at least `@Entity`, `@Id` Annotations
+• `@Table`, `@Column` are optional
+* To avoid variable mapping column, use `@Transient`
+
+> We can’t save new row into DB table with existed Primary key Id using Save() method
+Hibernate will throw `ConstraintViolationException`
+
+## Update(obj):void:-
+
+> This method is used to update all columns data based on Primary key column.
+
+* if Table has 50 columns, in that one is Primary key, then is we use ses.update(obj),
+* it will update 49 columns based one 1 Primary key Column.
+* If Given Primary key Id is not found then Hibernate throws (Unknown object State `StateObjectStateException`
+* Row was updated or deleted by another transaction (or unsaved-value mapping....)
+
+
+## ses.delete(obj):void:
+> this method is used to delete one row from DB Table based on Primary key only
+   a. This method will take input as “model class object having primary key value”
+   b. First it will execute select query and loads data into cache(I-Level) if exist then delete
+       query will be called, else does nothing.
+
+
+## DATE and TIME in Hibernate:-
+
+> Hibernate has provided enum to handle Date and time concept as column data named as
+“TemporalType” given in Package:javax.persistence
+
+

@@ -411,3 +411,30 @@ Ses.close();
 ```
 
 *) if row 101 is not existed then `ObjectNOtfoundException `is thrown by Hibernate.
+
+## Get() execution flow:-
+
+1. Call get method from hibernate method
+2. On calling first time it will make network call by executing select query
+3. In row exist it is converted to object and placed in Session Cache else object value is null.
+4. Finally object return to Application.
+
+## Load() Execution flow:-
+
+1. Call load method in hibernate application
+2. to application communication with cache
+3. Cache create proxy object of model class and it will be set primary key value.
+Proxy means dummy object created by hibernate.
+4. This proxy is return back to application
+5. On performing any operations over object (Print or any get method call) then it will
+communicate to proxy for data.
+6. Hibernate application makes Networks call by executing select query.
+7. If row exist it is return back to Cache as object data.
+8. Data return to applications.
+
+## Get()vs Load()
+
+| get()| load()|
+| --- | --- |
+| get hits DB on call| load hits  cache first|
+| get return null if record not exits| load throws an exception if record not exist ObjectNotFound |

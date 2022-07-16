@@ -276,4 +276,138 @@ Hibernate will throw `ConstraintViolationException`
 > Hibernate has provided enum to handle Date and time concept as column data named as
 “TemporalType” given in Package:javax.persistence
 
+## WORKING WITH CLOB AND BLOB TYPES IN HIBERNATE:-
+Database support BLOB and CLOB to store large object in tables
 
+## BLOB
+* it is used to store large objects like audio, video,images,files,like documents PPT,excel
+files etc....
+* it also support pure text in hibernate code should be written as
+
+```java
+@Lob
+Private byte[] img;
+```
+
+
+## CLOB
+* Character Large Object used to store only text data. Code is
+
+```java
+@Lob
+Private char[] mydata;
+```
+
+Example code
+
+
+```java
+@Lob
+@Column(name="img")
+private byte[] simg;
+@Lob
+@Column(name="doc")
+private char[] stxt;
+```
+
+
+```java
+import java.io.FileInputStream;
+importjava.io.FileNotFoundException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+publicclass Test {
+  publicstaticvoid main(String[] args) throws Exception {
+    Configuration cfg = new Configuration();
+    cfg.configure();
+    SessionFactory sf = cfg.buildSessionFactory();
+    Session ses = sf.openSession();
+    Transaction tx = ses.beginTransaction();
+    Student st = new Student();
+    st.setStdId(1001);
+    st.setStdName("Ram");
+    st.setStdFee(22.2);
+    FileInputStream fis = new FileInputStream("D:\\Ram.jpg");
+    byte[] arr = newbyte[fis.available()];
+    fis.read(arr);
+    st.setSimg(arr);
+    String str = "Welcome to Ramjatan ";
+    char[] arr1 = str.toCharArray();
+    st.setStxt(arr1);
+    ses.save(st);
+    tx.commit();
+    ses.close();
+
+  }
+}
+```
+## Selecting/Fetching Data From DB Table using Hibernate:-
+
+* Use get() or load() methods to fetch one row data based on Primary key. 
+* It will return in Object format.
+
+##  get() method
+
+*  Hibernate search for Row based on Primary key
+*  If found, Hibernate create object and set the data taken from Table row.
+*  So we need to pass Class type input (Java.lang.Class) to get method.
+
+Class (java.lang):- This is used to give information of a class like name, package, const,
+variables, methods etc. to JVM /Framework/Containers.
+
+* Syntax:- to create Class obj:-
+    a. `Class c= Class.forName(“-------“);`
+    b. `Class c=-------.class`
+
+* This method is used to fetch one row to one object based on primary key.
+
+Consider Emplyee as Example then code can be written as
+
+```java
+Employee e=ses.get(Class.forName(“com.app.Employee”),10);
+
+```
+
+```java
+Employee e=ses.get(Employee.class,10);
+```
+
+* If Hibernate finds row based on Primary given then row will be converted to object else
+null value is returned.
+
+### code
+
+1. Model class , mapping
+2. Cfg file are same as before
+3. Test class ://cfg,sf,ses
+
+
+```java
+Employee e ses.get(Employee.class,101);
+System.out.println(e);
+Ses.close();
+```
+## LOAD() method:- 
+* This method also used to select one row data from DB table and converts tomodel class object.
+
+```java
+Syntax:
+Load(Class<T> Clz,
+Serializable id):T Obj
+```
+### code
+1. Model class and mapping code
+2. Cfg file are same as before
+3. Test class:// cfg,sf,ses,
+
+//save one object berfor this
+
+```k
+Employee e=ses.load(Employee.class,100);
+Sysout(e);
+Ses.close();
+```
+
+*) if row 101 is not existed then `ObjectNOtfoundException `is thrown by Hibernate.

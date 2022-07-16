@@ -204,7 +204,7 @@ operation then Tx not required.
       } finally{
       ses.close();
       }
-``
+```
 
 ### Given few examples as:
 #### Non-select: 
